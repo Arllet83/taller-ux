@@ -45,7 +45,6 @@ function mostrarAlerta(texto, tipo = "exito", opcDeshacer = false) {
     }
 }
 
-// Prevención de errores: el botón se activa solo si los campos están llenos
 function validarFormulario() {
     const valido = inputNombre.value.trim() !== "" && inputEdad.value !== "" && selectTurno.value !== "";
     btnEnviar.disabled = !valido;

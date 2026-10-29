@@ -1,16 +1,19 @@
-# Taller UX
+# Taller UX — Inscripción al Jardín Infantil
 
-Formulario de inscripcion redisenado aplicando principios de UX/UI.
+Formulario de inscripción rediseñado aplicando principios de UX/UI, accesibilidad (a11y) y leyes de usabilidad.
 
-Pagina publicada: https://Arllet83.github.io/taller-ux/
+* 🌐 **Página publicada (GitHub Pages):** [https://Arllet83.github.io/taller-ux/](https://Arllet83.github.io/taller-ux/)
+* 📄 **Documento de Auditoría UX:** [Ver docs/AUDITORIA-UX.md](./docs/AUDITORIA-UX.md)
+
+---
 
 ## Cambios aplicados
 
-| Principio | Cambio |
-| --------- | ------- |
-| Visibilidad del estado | Mensaje de envio, de error y de exito |
-| Prevencion de errores | Campos obligatorios y validacion del correo |
-| Control y libertad | Confirmacion antes de limpiar el formulario |
-| Ley de Fitts | Boton principal grande y separado de Limpiar |
-| Ley de Hick | Talleres agrupados por categoria |
-| Accesibilidad | Labels, texto alternativo, contraste y foco visible |
+| Principio | Cambio Aplicado |
+| :--- | :--- |
+| **Visibilidad del estado** | Alertas dinámicas con color y confirmación visual |
+| **Prevención de errores** | Botón deshabilitado hasta validar todos los campos |
+| **Control y libertad** | Opción de «Deshacer» al eliminar un registro |
+| **Ley de Fitts** | Botones de al menos 44px de alto con áreas amplias |
+| **Ley de Hick** | Opciones directas y ordenadas para rápida selección |
+| **Accesibilidad (a11y)** | Labels explícitos, foco visible, contraste 4.5:1 y 100/100 en Lighthouse |
