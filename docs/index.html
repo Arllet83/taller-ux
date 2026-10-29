@@ -7,25 +7,30 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <main class="contenedor">
-        <h1>Inscripción de Nuevos Alumnos</h1>
+    <main class="tarjeta">
+        <img src="./imagen/banner.png" alt="Niños realizando actividades educativas en el jardín infantil" class="banner-img">
 
+        <!-- Un solo H1 principal -->
+        <h1>Inscripción de Nuevos Alumnos</h1>
+        <p class="descripcion-ayuda">Ingresa los datos solicitados para completar el registro.</p>
+
+        <!-- Contenedor para mensajes visibles y lectura accesible por voz -->
         <div id="mensajeAlerta" class="alerta" role="status" aria-live="polite"></div>
 
         <form id="formMatricula" class="formulario">
             <div class="campo">
                 <label for="inputNombre">Nombre del Niño(a):</label>
-                <input type="text" id="inputNombre" placeholder="Ej. Lucas" autocomplete="off">
+                <input type="text" id="inputNombre" placeholder="Ej. Lucas" autocomplete="off" required>
             </div>
 
             <div class="campo">
                 <label for="inputEdad">Edad (años):</label>
-                <input type="number" id="inputEdad" placeholder="Ej. 4" min="3" max="6">
+                <input type="number" id="inputEdad" placeholder="Ej. 4" min="3" max="6" required>
             </div>
 
             <div class="campo">
                 <label for="selectTurno">Turno:</label>
-                <select id="selectTurno">
+                <select id="selectTurno" required>
                     <option value="">Seleccione turno</option>
                     <option value="Mañana">Mañana</option>
                     <option value="Tarde">Tarde</option>
@@ -33,7 +38,7 @@
             </div>
 
             <div class="acciones">
-                <button type="submit" id="btnEnviar" disabled>Inscribir</button>
+                <button type="submit" id="btnEnviar" class="btn-principal" disabled>Inscribir</button>
                 <button type="button" id="btnClear" class="btn-secundario">Limpiar</button>
             </div>
         </form>

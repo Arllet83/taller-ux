@@ -4,27 +4,27 @@
 
 | Heurística | Problema en la Pantalla Original | Solución Aplicada en el Rediseño |
 | :--- | :--- | :--- |
-| **1. Visibilidad del estado del sistema** | Al inscribir o limpiar, los mensajes eran solo texto plano sin formatear y difíciles de distinguir. | Se agregó un contenedor `#mensajeAlerta` con estilos visuales dinámicos de éxito/error y estado accesible. |
-| **2. Prevención de errores** | Permitía intentar enviar el formulario con campos incompletos o vacíos. | Se deshabilitó el botón "Inscribir" hasta que todos los campos requeridos estén llenos (`input` listener). |
-| **3. Control y libertad del usuario** | Al borrar un alumno no se pedía confirmación ni se daba opción de deshacer la acción. | Se añadió un botón "Eliminar" por alumno con una notificación que incluye la opción "Deshacer". |
-| **4. Consistencia y estándares** | La interfaz carecía de CSS, usando tipografía predeterminada (`Times New Roman`) y sin estructura. | Se creó `estilos.css` usando variables en `:root`, espaciado consistente y un único `<h1>`. |
-| **5. Reconocimiento antes que recuerdo** | Los `<label>` no estaban enlazados explícitamente a los `<input>` mediante el atributo `for`/`id`. | Se vincularon explícitamente todos los `<label for="...">` con sus respectivos campos de entrada. |
+| **1. Visibilidad del estado del sistema** | Los mensajes eran solo texto plano sin estilo. Al registrar o limpiar no había confirmación visual clara ni retroalimentación atractiva. | Se agregó una imagen de encabezado `img/banner.png` y un contenedor de alertas dinámico (`#mensajeAlerta`) que muestra mensajes interactivos con colores de estado. |
+| **2. Prevención de errores** | Permitía presionar el botón "Inscribir" con campos incompletos o en blanco. | Se deshabilitó el botón de envío por defecto hasta validar que todos los campos requeridos estén llenos mediante el evento `input`. |
+| **3. Control y libertad del usuario** | Al eliminar un registro de la lista de inscritos, la acción era destructiva, inmediata y no ofrecía opción de arrepentimiento. | Se implementó la funcionalidad de rescate con un botón de «Deshacer» en el mensaje de confirmación para restaurar el registro borrado. |
+| **4. Consistencia y estándares** | La interfaz carecía de hoja de estilos CSS, mostrando la tipografía predeterminada (`Times New Roman`) y un diseño desordenado. | Se centralizaron los estilos mediante variables CSS en `:root` definiendo una paleta en tonos morado (`#5b21b6`) y celeste (`#0284c7`), con un único `<h1>`. |
+| **5. Reconocimiento antes que recuerdo** | Los campos `<label>` no estaban asociados formalmente a los `<input>`, y los placeholders desaparecían al escribir. | Se vinculó de forma explícita cada `<label for="...">` con el `id` correspondiente del campo de entrada. |
 
 ---
 
 ## 2. Justificación por Leyes de UX (Fitts, Hick y Miller)
 
-* **Ley de Fitts:** Los botones y campos tienen una altura mínima de **44px** y áreas de clic amplias para facilitar la interacción rápida.
-* **Ley de Hick:** Se organizaron las opciones en campos claramente diferenciados (Nombre, Edad, Turno) para minimizar el tiempo de decisión.
-* **Ley de Miller:** La lista de alumnos se presenta agrupada en fichas visuales independientes (*chunks*) para facilitar la lectura.
+* **Ley de Fitts:** Todos los elementos interactivos (`button`, `input`, `select`) se configuraron con un área táctil mínima de **44px** de alto. El botón principal "Inscribir" posee un ancho expandido para facilitar el clic/toque rápido tanto en dispositivos móviles como en escritorio.
+* **Ley de Hick:** Se simplificaron las opciones presentadas al usuario en un flujo lineal y claro (Nombre, Edad y Turno), reduciendo la carga cognitiva y el tiempo requerido para tomar decisiones.
+* **Ley de Miller:** La información de los inscritos se agrupa en fichas visuales independientes (*chunks*) mediante listas formateadas que separan los datos relevantes en bloques de fácil lectura.
 
 ---
 
 ## 3. Accesibilidad (a11y) y Estándares
 
-* **Etiquetas explícitas:** Cada campo posee su `<label for="...">` vinculado al `id` del input.
-* **Foco visible:** Configurado con `:focus-visible` (`outline: 3px solid #005A9C`) para navegación 100% por teclado (`Tab` y `Enter`).
-* **Contraste y Botones:** Paleta en `:root` con contraste mínimo de 4.5:1 y botones táctiles de 44px de alto.
+* **Etiquetas y Atributo Alt:** Cada campo contiene un `<label>` explícito vinculado y la imagen `banner.png` incluye una descripción textual completa en el atributo `alt`.
+* **Foco teclado visible:** Se eliminó la mala práctica de `outline: none` y se implementó `:focus-visible` con un contorno remarcado de `3px solid #0284c7` para permitir navegación completa por teclado con `Tab` y `Enter`.
+* **Contraste y Áreas Táctiles:** La combinación de texto oscuro (`#1e1b4b`) sobre fondo claro y botones en morado/celeste supera la relación de contraste exigida de **4.5:1** (cumpliendo norma WCAG AA/AAA), manteniendo botones de al menos 44px.
 
 ---
 
@@ -32,8 +32,10 @@
 
 ### Antes del Rediseño
 * **Puntaje de Accesibilidad:** 85 / 100
-* **Captura:** `![Lighthouse Antes](img/lighthouse-antes.png)`
+* **Captura:** ![Lighthouse Antes](./imagen/antes%20rediseño.JPG)
+* **Problemas detectados:** Ausencia de relación explícita `<label for>`, falta de contraste adecuado y elementos interactivos pequeños.
 
 ### Después del Rediseño
-* **Puntaje de Accesibilidad:** 98 / 100
-* **Captura:** `![Lighthouse Después](img/lighthouse-despues.png)`
+* **Puntaje de Accesibilidad:** 100 / 100
+* **Captura:** ![Lighthouse Después](./imagen/después%20rediseño.JPG)
+* **Mejoras logradas:** 100% en contraste de texto y placeholders, etiquetas correctamente vinculadas, áreas táctiles accesibles y foco visual por teclado completamente funcional.

@@ -10,11 +10,11 @@ class AlumnoJardin {
     }
 
     obtenerCategoriaEdad() {
-        return this.edad <= 4 ? "Nivel: Inicial 3-4 años" : "Nivel: Inicial 5-6 años";
+        return this.edad <= 4 ? "Inicial (3-4 años)" : "Inicial (5-6 años)";
     }
 
     obtenerFicha() {
-        return `${this.nombre} - ${this.edad} años - Turno: ${this.turno} (${this.obtenerCategoriaEdad()})`;
+        return `${this.nombre} - ${this.edad} años - Turno: ${this.turno} [${this.obtenerCategoriaEdad()}]`;
     }
 }
 
@@ -38,11 +38,14 @@ function mostrarAlerta(texto, tipo = "exito", opcDeshacer = false) {
         btnDeshacer.textContent = "Deshacer";
         btnDeshacer.style.marginLeft = "12px";
         btnDeshacer.style.minHeight = "32px";
+        btnDeshacer.style.backgroundColor = "var(--color-morado-principal)";
+        btnDeshacer.style.color = "#ffffff";
         btnDeshacer.addEventListener("click", deshacerEliminacion);
         mensajeAlerta.appendChild(btnDeshacer);
     }
 }
 
+// Prevención de errores: el botón se activa solo si los campos están llenos
 function validarFormulario() {
     const valido = inputNombre.value.trim() !== "" && inputEdad.value !== "" && selectTurno.value !== "";
     btnEnviar.disabled = !valido;
@@ -56,14 +59,14 @@ formMatricula.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (inputNombre.value.trim() === "" || inputEdad.value === "" || selectTurno.value === "") {
-        mostrarAlerta("Por favor ingrese todos los datos correctamente.", "error");
+        mostrarAlerta("Completa todos los campos obligatorios.", "error");
         return;
     }
 
     const nuevoAlumno = new AlumnoJardin(inputNombre.value.trim(), Number(inputEdad.value), selectTurno.value);
 
     if (!nuevoAlumno.verificarEdad()) {
-        mostrarAlerta("Edad fuera del rango permitido (3-6 años)", "error");
+        mostrarAlerta("Edad fuera del rango permitido (3 a 6 años).", "error");
         return;
     }
 
@@ -85,7 +88,7 @@ function agregarAlumnoALista(alumno) {
     btnEliminar.addEventListener("click", () => {
         ultimoAlumnoEliminado = { alumno, elemento: li };
         li.remove();
-        mostrarAlerta("Alumno eliminado. ", "advertencia", true);
+        mostrarAlerta("Alumno eliminado.", "advertencia", true);
     });
 
     li.appendChild(spanInfo);
@@ -104,11 +107,11 @@ function deshacerEliminacion() {
 btnClear.addEventListener("click", () => {
     formMatricula.reset();
     btnEnviar.disabled = true;
-    mostrarAlerta("Formulario limpiado", "advertencia");
+    mostrarAlerta("Formulario limpiado.", "advertencia");
 });
 
 inputEdad.addEventListener("blur", () => {
     if (inputEdad.value && (Number(inputEdad.value) < 3 || Number(inputEdad.value) > 6)) {
-        mostrarAlerta("Ingresar edad válida (3 a 6 años)", "advertencia");
+        mostrarAlerta("Ingresar edad válida (3 a 6 años).", "advertencia");
     }
 });
